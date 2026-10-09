@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Metodología de la Investigación – Sesión 6</title>
+<style>
+:root{--navy:#164e75;--blue:#2476a8;--sky:#dff3ff;--pale:#f3faff;--cyan:#8ed8f8;--ink:#193447;--muted:#5c7485;--white:#fff;--line:#d8eaf4;--green:#dff7ee;--red:#fff0f0;--shadow:0 10px 30px rgba(27,91,129,.08)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eaf7ff 0,#f8fcff 300px,#f5faff 100%);font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.5}
+header{background:linear-gradient(125deg,#164e75,#2476a8 58%,#65c5ed);color:#fff;padding:28px clamp(18px,4vw,54px) 30px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:#ffffff12;right:-70px;top:-120px}
+.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.76rem;font-weight:bold;color:#c9edff}
+h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.12;margin:.45rem 0 .8rem;max-width:850px}
+header p{max-width:760px;color:#e6f6ff;margin:0;font-size:1.02rem}
+.wrap{max-width:1200px;margin:auto;padding:22px clamp(14px,3vw,36px) 50px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.nav button{border:1px solid #c8e4f3;background:#fff;color:#215d81;border-radius:999px;padding:10px 15px;font-weight:700;cursor:pointer}
+.nav button.active,.nav button:hover{background:#2476a8;color:white;border-color:#2476a8}
+.panel{display:none}.panel.active{display:block}
+.section-title{margin:0 0 4px;font-size:1.45rem;color:#164e75}.intro{margin:0 0 18px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:19px;box-shadow:var(--shadow);min-width:0}
+.span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+.kpi{display:flex;align-items:center;gap:12px}.ico{width:46px;height:46px;border-radius:14px;background:var(--sky);display:grid;place-items:center;font-size:1.35rem;flex-shrink:0}.kpi strong{display:block;font-size:1.12rem;color:#164e75}.kpi small{color:var(--muted)}
+h2{font-size:1.25rem;margin:0 0 12px;color:#164e75}h3{font-size:1rem;margin:0 0 6px;color:#215d81}
+p{margin:.35rem 0 .7rem}ul,ol{padding-left:1.25rem;margin:.5rem 0}li{margin:.35rem 0}
+.pill{display:inline-block;border-radius:999px;background:#e4f5ff;color:#1b6794;padding:4px 9px;font-size:.78rem;font-weight:700;margin:2px}
+.callout{background:#eef9ff;border-left:4px solid #58bde9;padding:12px 14px;border-radius:8px;margin-top:12px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.soft{background:#f4fbff;border:1px solid #d7edf8;border-radius:13px;padding:13px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #e2eef5}th{background:#eef8fe;color:#164e75}
+.progress{height:8px;background:#e4f1f8;border-radius:999px;overflow:hidden;margin:8px 0 14px}.progress div{height:100%;width:0;background:linear-gradient(90deg,#5bc2e9,#2476a8);transition:width .25s}
+.q{border:1px solid #d8eaf4;border-radius:15px;padding:16px;margin:12px 0;background:#fff}.q legend{font-weight:700;color:#164e75;padding:0 5px}.opts{display:grid;gap:8px;margin-top:10px}.opts label{border:1px solid #dcebf4;border-radius:10px;padding:10px 12px;cursor:pointer}.opts label:hover{background:#f1faff}.opts input{margin-right:8px;accent-color:#2476a8}.feedback{display:none;padding:10px 12px;border-radius:10px;margin-top:10px}.feedback.show{display:block}.feedback.good{background:#e3f8ef;color:#176b4d}.feedback.bad{background:#fff0f0;color:#9b3434}
+.btn{border:0;background:#2476a8;color:white;padding:10px 15px;border-radius:10px;font-weight:700;cursor:pointer}.btn:hover{background:#164e75}.btn.secondary{background:#e5f5ff;color:#215d81;border:1px solid #c7e6f5}.btnrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+details{border:1px solid #d8eaf4;border-radius:12px;padding:12px 14px;background:white;margin:9px 0}summary{cursor:pointer;font-weight:700;color:#215d81}
+select{padding:10px;border:1px solid #c9e1ef;border-radius:10px;background:#fff;color:#193447;max-width:100%}
+.result{padding:12px;border-radius:12px;background:#eef8fe;margin-top:12px}
+footer{border-top:1px solid #d7e9f4;padding-top:18px;margin-top:28px;color:#637d8e;font-size:.88rem}
+a{color:#146e9d;overflow-wrap:anywhere}
+@media(max-width:850px){.span-3,.span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 12}.two-col{grid-template-columns:1fr}.grid{gap:12px}}
+@media print{body{background:#fff}header{padding:18px}.nav,.btn,.btnrow{display:none!important}.panel{display:block!important;page-break-inside:avoid}.card{box-shadow:none;break-inside:avoid}.wrap{padding:12px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">Metodología de la Investigación Científica · Pregrado</div>
+ <h1>Dashboard de aprendizaje<br>Sesión 6: población, muestra y muestreo</h1>
+ <p>Un recorrido visual e interactivo por los elementos de selección de participantes, con ejemplos aplicados a Enfermería, actividades de práctica y bibliografía basada en las diapositivas de clase.</p>
+</header>
+<div class="wrap">
+ <nav class="nav" aria-label="Secciones del dashboard">
+  <button class="active" data-tab="inicio">Resumen</button><button data-tab="conceptos">Conceptos clave</button><button data-tab="muestreo">Tipos de muestreo</button><button data-tab="enfermeria">Caso de Enfermería</button><button data-tab="practica">Ejercicios dinámicos</button><button data-tab="bibliografia">Bibliografía</button>
+ </nav>
+ <section id="inicio" class="panel active">
+  <h2 class="section-title">Vista general de la sesión</h2><p class="intro">Meta: identificar población, muestra, muestreo, sujetos/escenario y criterios de selección dentro del marco metodológico.</p>
+  <div class="grid">
+   <div class="card span-3"><div class="kpi"><div class="ico">👥</div><div><strong>Población</strong><small>Conjunto de interés</small></div></div><p>Grupo o unidades de las que se necesita obtener información.</p></div>
+   <div class="card span-3"><div class="kpi"><div class="ico">🔎</div><div><strong>Muestra</strong><small>Subgrupo seleccionado</small></div></div><p>Parte de la población sobre la que se recolectan los datos.</p></div>
+   <div class="card span-3"><div class="kpi"><div class="ico">🎯</div><div><strong>Muestreo</strong><small>Procedimiento</small></div></div><p>Proceso usado para seleccionar la muestra.</p></div>
+   <div class="card span-3"><div class="kpi"><div class="ico">📋</div><div><strong>Criterios</strong><small>Elegibilidad</small></div></div><p>Condiciones para decidir quién puede o no participar.</p></div>
+   <div class="card span-8"><h2>Ruta de aprendizaje</h2><div class="two-col"><div class="soft"><h3>Enfoque cuantitativo</h3><ul><li>Población y criterios de selección.</li><li>Muestra y tamaño de muestra.</li><li>Muestreo probabilístico y no probabilístico.</li></ul></div><div class="soft"><h3>Enfoque cualitativo</h3><ul><li>Escenario donde ocurre el fenómeno.</li><li>Selección intencional de participantes.</li><li>Profundidad y riqueza de la información.</li></ul></div></div><div class="callout"><b>Idea central:</b> la elección de participantes debe estar alineada con el enfoque, diseño, objetivos y acceso a la población.</div></div>
+   <div class="card span-4"><h2>Comprueba tu avance</h2><p>Completa las actividades de la sección “Ejercicios dinámicos”. El indicador se actualizará al corregir tus respuestas.</p><div class="progress"><div id="overallbar"></div></div><strong id="overallscore">0 de 8 respuestas correctas</strong><p><small>Tu progreso se mantiene mientras esta página permanezca abierta.</small></p><button class="btn secondary" onclick="showTab('practica')">Ir a practicar →</button></div>
+   <div class="card span-12"><h2>Preguntas para iniciar la conversación</h2><div class="two-col"><div class="soft">¿Qué diferencia hay entre población y muestra?</div><div class="soft">¿Qué podría pasar si la muestra no representa adecuadamente a la población?</div></div></div>
+  </div>
+ </section>
+ <section id="conceptos" class="panel">
+  <h2 class="section-title">Conceptos clave</h2><p class="intro">Definiciones resumidas y organizadas a partir de la Sesión 6.</p>
+  <div class="grid">
+   <div class="card span-6"><h2>6.1 Población</h2><p>Conjunto de individuos o unidades del que se requiere información y que pertenece al ámbito donde se desarrolla el estudio.</p><div class="callout"><b>Ejemplo:</b> todos los estudiantes de Enfermería matriculados en una universidad durante el semestre definido.</div></div>
+   <div class="card span-6"><h2>6.2 Muestra</h2><p>Subgrupo de la población del que se recolectan datos. En un estudio cuantitativo, se busca que sea adecuada y, cuando corresponde, representativa.</p><div class="callout"><b>Ejemplo:</b> 80 estudiantes seleccionados de esa población para responder un cuestionario.</div></div>
+   <div class="card span-6"><h2>Cálculo del tamaño de muestra</h2><p>Permite estimar cuántos elementos se incluirán. Las diapositivas distinguen entre población finita e infinita y variables cuantitativas y cualitativas.</p><p><span class="pill">Nivel de confianza</span><span class="pill">Error de estimación</span></p><small>La diapositiva enumera estos componentes, pero no presenta fórmulas legibles en el archivo recibido; por ello no se reproduce una fórmula específica aquí.</small></div>
+   <div class="card span-6"><h2>6.4 Sujetos de estudio</h2><p>Personas, grupos, organizaciones, comunidades, documentos, acontecimientos o fenómenos de los que se obtiene información para responder las preguntas de investigación.</p><div class="callout"><b>Ejemplo:</b> pacientes adultos que reciben educación sobre prevención de diabetes.</div></div>
+   <div class="card span-6"><h2>6.5 Escenario de estudio</h2><p>En el enfoque cualitativo, es el contexto natural donde ocurre el fenómeno y donde se busca comprender experiencias, significados o comportamientos.</p><div class="callout"><b>Ejemplo:</b> consultorio de enfermería de un centro de salud donde las personas viven su experiencia de atención.</div></div>
+   <div class="card span-6"><h2>6.6 Criterios de selección</h2><div class="two-col"><div class="soft"><h3>Inclusión</h3><p>Características que una persona debe cumplir para participar.</p></div><div class="soft"><h3>Exclusión</h3><p>Condiciones definidas que hacen que una persona no sea elegible para el estudio.</p></div></div><p>En cualitativa también se consideran experiencia con el fenómeno, conocimiento, disponibilidad, comunicación, pertinencia y diversidad cuando sea pertinente.</p></div>
+  </div>
+ </section>
+ <section id="muestreo" class="panel">
+  <h2 class="section-title">Tipos de muestreo</h2><p class="intro">El muestreo es el procedimiento para seleccionar una muestra. La sesión distingue métodos probabilísticos y no probabilísticos.</p>
+  <div class="grid">
+   <div class="card span-6"><h2>Probabilístico</h2><p>La selección se basa en el azar; se usa cuando el diseño y el objetivo lo permiten y puede buscarse generalizar resultados.</p><table><thead><tr><th>Tipo</th><th>¿Cómo funciona?</th><th>Ejemplo en salud</th></tr></thead><tbody>
+    <tr><td><b>Aleatorio simple</b></td><td>Se eligen participantes al azar de una lista.</td><td>Sortear 40 nombres de una lista de estudiantes de Enfermería.</td></tr>
+    <tr><td><b>Sistemático</b></td><td>Se elige un inicio al azar y después cada k-ésimo elemento.</td><td>Seleccionar cada décimo registro de un listado ordenado, tras inicio aleatorio.</td></tr>
+    <tr><td><b>Estratificado</b></td><td>Se divide la población en estratos y se selecciona al azar dentro de cada uno.</td><td>Elegir estudiantes por ciclo académico para asegurar representación de los ciclos.</td></tr>
+    <tr><td><b>Por conglomerados</b></td><td>Se seleccionan grupos naturales y se estudian sus integrantes según el plan.</td><td>Seleccionar al azar algunos centros de salud y estudiar a usuarios elegibles de esos centros.</td></tr>
+   </tbody></table></div>
+   <div class="card span-6"><h2>No probabilístico</h2><p>La selección no depende de una probabilidad conocida para cada elemento. Puede ser útil según la pregunta, el acceso y el enfoque, aunque limita la generalización estadística.</p><table><thead><tr><th>Tipo</th><th>¿Cómo funciona?</th><th>Ejemplo en salud</th></tr></thead><tbody>
+    <tr><td><b>Conveniencia</b></td><td>Se incluye a quienes son accesibles y cumplen criterios.</td><td>Invitar a pacientes disponibles en consulta durante el periodo definido.</td></tr>
+    <tr><td><b>Juicio / intencional</b></td><td>El investigador elige participantes por su experiencia o pertinencia.</td><td>Entrevistar enfermeras con experiencia en cuidados paliativos.</td></tr>
+    <tr><td><b>Cuotas</b></td><td>Se fijan cantidades para categorías específicas.</td><td>Encuestar una cantidad establecida de usuarios de distintos grupos de edad.</td></tr>
+    <tr><td><b>Bola de nieve</b></td><td>Participantes iniciales refieren a otras personas elegibles.</td><td>Contactar a una población difícil de localizar mediante referencias de participantes.</td></tr>
+   </tbody></table></div>
+   <div class="card span-12"><h2>Selector de práctica</h2><p>Elige la descripción que más se ajusta a cada método.</p><label for="sampling">Situación:</label><br><select id="sampling" onchange="samplingAnswer()"><option value="">Selecciona una situación…</option><option value="a">Se sortean 30 nombres de una lista completa.</option><option value="s">Después de un inicio aleatorio, se elige cada 8.º registro.</option><option value="e">Se divide por ciclos académicos y se sortea en cada ciclo.</option><option value="c">Se sortean tres centros de salud como grupos.</option><option value="v">Las primeras participantes recomiendan a otras elegibles.</option><option value="co">Se invita a personas disponibles en la sala de espera.</option></select><div class="result" id="samplingresult" aria-live="polite">La explicación aparecerá aquí.</div></div>
+  </div>
+ </section>
+ <section id="enfermeria" class="panel">
+  <h2 class="section-title">Caso aplicado a Enfermería</h2><p class="intro">Caso didáctico de ejemplo, creado para practicar los conceptos de la sesión; no corresponde a datos reales de una investigación.</p>
+  <div class="grid">
+   <div class="card span-8"><span class="pill">Ejemplo aplicado</span><h2>Conocimientos sobre prevención de anemia en cuidadores</h2><p>Un equipo desea describir los conocimientos sobre prevención de anemia en cuidadores de niños menores de cinco años que acuden a un centro de salud durante un periodo definido.</p>
+    <details><summary>Ver la población</summary>Todos los cuidadores de niños menores de cinco años que acuden al centro de salud durante el periodo establecido y cumplen los criterios definidos.</details>
+    <details><summary>Ver una muestra posible</summary>Un grupo de 60 cuidadores seleccionados de la población. El número es ilustrativo: el tamaño real debe justificarse con el diseño y el cálculo o estrategia de selección que corresponda.</details>
+    <details><summary>Ver unidad o sujeto de estudio</summary>Cada cuidador participante del que se obtiene información mediante el instrumento elegido.</details>
+    <details><summary>Ver criterios de inclusión posibles</summary>Ser cuidador de un niño menor de cinco años, acudir al establecimiento en el periodo del estudio y aceptar participar según los procedimientos éticos aplicables.</details>
+    <details><summary>Ver criterio de exclusión posible</summary>No poder completar el instrumento previsto por una razón definida previamente en el protocolo. Los criterios deben ser pertinentes y no arbitrarios.</details>
+    <details><summary>Ver escenario</summary>El centro de salud donde se realiza la captación o, si el estudio es cualitativo, el contexto natural en que se explora la experiencia de los participantes.</details>
+   </div>
+   <div class="card span-4"><h2>Mapa rápido</h2><p><b>Población:</b> grupo total que cumple la definición del estudio.</p><p><b>Muestra:</b> participantes seleccionados.</p><p><b>Muestreo:</b> procedimiento de selección.</p><p><b>Criterios:</b> reglas de elegibilidad.</p><div class="callout">Consejo: define primero quiénes forman la población y el periodo; después especifica la muestra y cómo se seleccionará.</div></div>
+   <div class="card span-12"><h2>Completa el diseño del caso</h2><div class="two-col"><div class="soft"><label for="casepop"><b>¿Qué es la población?</b></label><br><select id="casepop"><option value="">Elige una respuesta</option><option value="all">Todos los cuidadores elegibles durante el periodo definido</option><option value="sample">Solo los 60 cuidadores seleccionados</option><option value="staff">El personal del centro de salud</option></select></div><div class="soft"><label for="casemethod"><b>Si se elige a quienes están disponibles, ¿qué muestreo sería?</b></label><br><select id="casemethod"><option value="">Elige una respuesta</option><option value="prob">Aleatorio simple</option><option value="conv">Conveniencia</option><option value="strat">Estratificado</option></select></div></div><button class="btn" onclick="checkCase()">Revisar caso</button><div id="casefeedback" class="feedback" aria-live="polite"></div></div>
+  </div>
+ </section>
+ <section id="practica" class="panel">
+  <h2 class="section-title">Ejercicios dinámicos</h2><p class="intro">Responde y pulsa “Corregir”. Cada pregunta incluye una explicación para aprender de los errores.</p>
+  <div class="card"><div class="progress"><div id="quizbar"></div></div><strong id="quizscore">0 de 8 correctas</strong><form id="quizform">
+   <fieldset class="q"><legend>1. En un estudio con 300 estudiantes de Enfermería, se eligen 75 para responder una encuesta. ¿Cuál es la muestra?</legend><div class="opts"><label><input type="radio" name="q1" value="a"> Los 300 estudiantes</label><label><input type="radio" name="q1" value="b"> Los 75 seleccionados</label><label><input type="radio" name="q1" value="c"> Los docentes de la universidad</label></div><div class="feedback" id="f1"></div></fieldset>
+   <fieldset class="q"><legend>2. Se sortea una lista numerada para seleccionar participantes. ¿Qué muestreo se describe?</legend><div class="opts"><label><input type="radio" name="q2" value="a"> Conveniencia</label><label><input type="radio" name="q2" value="b"> Aleatorio simple</label><label><input type="radio" name="q2" value="c"> Bola de nieve</label></div><div class="feedback" id="f2"></div></fieldset>
+   <fieldset class="q"><legend>3. Se divide a los participantes por ciclo académico y se selecciona al azar dentro de cada ciclo. ¿Qué método es?</legend><div class="opts"><label><input type="radio" name="q3" value="a"> Estratificado</label><label><input type="radio" name="q3" value="b"> Sistemático</label><label><input type="radio" name="q3" value="c"> Cuotas</label></div><div class="feedback" id="f3"></div></fieldset>
+   <fieldset class="q"><legend>4. El equipo incluye a usuarios disponibles que cumplen los criterios. ¿Qué método es?</legend><div class="opts"><label><input type="radio" name="q4" value="a"> Conglomerados</label><label><input type="radio" name="q4" value="b"> Aleatorio simple</label><label><input type="radio" name="q4" value="c"> Conveniencia</label></div><div class="feedback" id="f4"></div></fieldset>
+   <fieldset class="q"><legend>5. En el estudio de cuidadores, ¿cuál podría ser un criterio de inclusión?</legend><div class="opts"><label><input type="radio" name="q5" value="a"> Ser cuidador de un niño menor de cinco años y acudir en el periodo definido</label><label><input type="radio" name="q5" value="b"> Ser cualquier trabajador del hospital</label><label><input type="radio" name="q5" value="c"> No pertenecer al grupo investigado</label></div><div class="feedback" id="f5"></div></fieldset>
+   <fieldset class="q"><legend>6. ¿Qué significa el escenario de estudio en el enfoque cualitativo?</legend><div class="opts"><label><input type="radio" name="q6" value="a"> El número final de participantes</label><label><input type="radio" name="q6" value="b"> El contexto donde ocurre el fenómeno que se busca comprender</label><label><input type="radio" name="q6" value="c"> El tipo de gráfico estadístico</label></div><div class="feedback" id="f6"></div></fieldset>
+   <fieldset class="q"><legend>7. Los primeros participantes recomiendan a otras personas elegibles. ¿Qué muestreo es?</legend><div class="opts"><label><input type="radio" name="q7" value="a"> Sistemático</label><label><input type="radio" name="q7" value="b"> Cuotas</label><label><input type="radio" name="q7" value="c"> Bola de nieve</label></div><div class="feedback" id="f7"></div></fieldset>
+   <fieldset class="q"><legend>8. ¿Por qué importa que la muestra sea adecuada para el objetivo?</legend><div class="opts"><label><input type="radio" name="q8" value="a"> Porque elimina la necesidad de definir la población</label><label><input type="radio" name="q8" value="b"> Porque favorece que los datos respondan la pregunta de investigación y, cuando corresponde, permitan inferencias válidas</label><label><input type="radio" name="q8" value="c"> Porque hace innecesarios los criterios de selección</label></div><div class="feedback" id="f8"></div></fieldset>
+   <div class="btnrow"><button class="btn" type="button" onclick="gradeQuiz()">Corregir respuestas</button><button class="btn secondary" type="button" onclick="resetQuiz()">Intentar de nuevo</button></div>
+  </form></div>
+  <div class="card" style="margin-top:15px"><h2>Reto de respuesta breve</h2><p>En tus propias palabras, explica la diferencia entre población y muestra usando un ejemplo de Enfermería.</p><textarea id="shortanswer" rows="3" style="width:100%;border:1px solid #c9e1ef;border-radius:10px;padding:12px;font:inherit" placeholder="Escribe tu explicación aquí…"></textarea><div class="btnrow"><button class="btn secondary" onclick="revealModel()">Mostrar respuesta orientativa</button></div><div id="modelanswer" class="result" style="display:none">La población es el conjunto completo de personas que cumplen las características del estudio; la muestra es el grupo más pequeño seleccionado de esa población para recoger los datos. Por ejemplo, la población puede ser todos los pacientes adultos atendidos en un centro de salud durante un mes, y la muestra, los pacientes seleccionados para responder una encuesta.</div></div>
+ </section>
+ <section id="bibliografia" class="panel">
+  <h2 class="section-title">Bibliografía y fuentes</h2><p class="intro">Referencias transcritas o adaptadas de la diapositiva final del material de Sesión 6. Verifica los datos editoriales antes de entregar una versión académica definitiva.</p>
+  <div class="card"><ol>
+   <li>Arias-Gómez, J., Villasís-Keever, M., &amp; Miranda-Novales, M. (2016). El protocolo de investigación III: la población de estudio. <i>Revista Alergia México, 62</i>(2), 201–206. <a href="https://revistaalergia.mx/ojs/index.php/ram/article/view/181/309" target="_blank" rel="noopener">Consultar artículo</a>.</li>
+   <li>Barral, A. G. (2024). Formación en lectura crítica de artículos científicos. <i>FMC - Formación Médica Continuada en Atención Primaria, 31</i>(4), 166–167. <a href="https://doi.org/10.1016/j.fmc.2023.05.007" target="_blank" rel="noopener">https://doi.org/10.1016/j.fmc.2023.05.007</a>.</li>
+   <li>Condori-Ojeda, P. (2020). <i>Universo, población y muestra</i>. Curso taller. El enlace consignado en las diapositivas presenta posibles errores de escritura, por lo que no se reproduce como enlace activo.</li>
+   <li>García Ramos, J. A., Ramos González, C., &amp; Ruiz Garzón, G. (2006). <i>Estadística administrativa</i>. Servicio de Publicaciones de la Universidad de Cádiz.</li>
+   <li>Hernández-Sampieri, R., &amp; Mendoza, C. (2018). <i>Metodología de la investigación: Las rutas cuantitativa, cualitativa y mixta</i>. McGraw-Hill Education.</li>
+   <li>Hernández Sampieri, R., Fernández Collado, C., &amp; Baptista Lucio, P. (2014). <i>Metodología de la investigación</i> (6.ª ed.). McGraw-Hill Education.</li>
+   <li>Trochim, W. M. (2020). Probability sampling methods. En P. Smith &amp; A. Jones (Eds.), <i>Introduction to sampling techniques</i> (pp. 45–67). Pearson Education.</li>
+  </ol><div class="callout"><b>Nota de integridad académica:</b> el dashboard es un apoyo para estudiar y exponer. Adapta las explicaciones con tu propio entendimiento, verifica las referencias y sigue las indicaciones de tu docente sobre el uso de herramientas digitales.</div></div>
+ </section>
+ <footer>Material educativo elaborado a partir de “Metodología de la Investigación Científica – Sesión 6” (archivo compartido en esta conversación). Los casos y ejercicios son ejemplos didácticos. Diseño adaptable a computadora y móvil.</footer>
+</div>
+<script>
+const tabs=[...document.querySelectorAll('.nav button')];
+function showTab(id){document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}
+tabs.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+const answers={q1:'b',q2:'b',q3:'a',q4:'c',q5:'a',q6:'b',q7:'c',q8:'b'};
+const explanations={
+q1:['Correcto: la muestra es el subgrupo de 75 estudiantes seleccionados.','La muestra corresponde a los 75 seleccionados, no al total de 300.'],
+q2:['Correcto: el sorteo hace que la selección sea aleatoria simple.','La selección al azar desde una lista corresponde al muestreo aleatorio simple.'],
+q3:['Correcto: se forman estratos y se selecciona dentro de cada uno.','Dividir por ciclo y seleccionar dentro de cada grupo es muestreo estratificado.'],
+q4:['Correcto: se elige a las personas accesibles que cumplen los criterios.','Seleccionar personas disponibles corresponde al muestreo por conveniencia.'],
+q5:['Correcto: define una característica pertinente para ser parte del estudio.','Un criterio de inclusión establece quién cumple las condiciones para participar.'],
+q6:['Correcto: el escenario es el contexto donde ocurre el fenómeno.','El escenario cualitativo es el contexto natural en el que ocurre el fenómeno que se desea comprender.'],
+q7:['Correcto: las referencias de participantes caracterizan la bola de nieve.','Cuando participantes recomiendan a otros, se trata de bola de nieve.'],
+q8:['Correcto: una selección adecuada se alinea con la pregunta y el objetivo.','La muestra debe ser apropiada al diseño y objetivo; no reemplaza definir población ni criterios.']
+};
+function gradeQuiz(){let score=0;Object.keys(answers).forEach(q=>{const selected=document.querySelector('input[name="'+q+'"]:checked');const f=document.getElementById('f'+q.slice(1));f.className='feedback show '+(selected&&selected.value===answers[q]?'good':'bad');if(selected&&selected.value===answers[q]){score++;f.textContent=explanations[q][0]}else{f.textContent=explanations[q][1]}});document.getElementById('quizscore').textContent=score+' de 8 correctas';document.getElementById('quizbar').style.width=(score/8*100)+'%';document.getElementById('overallscore').textContent=score+' de 8 respuestas correctas';document.getElementById('overallbar').style.width=(score/8*100)+'%';}
+function resetQuiz(){document.getElementById('quizform').reset();for(let i=1;i<=8;i++){let f=document.getElementById('f'+i);f.className='feedback';f.textContent=''}document.getElementById('quizscore').textContent='0 de 8 correctas';document.getElementById('quizbar').style.width='0%';document.getElementById('overallscore').textContent='0 de 8 respuestas correctas';document.getElementById('overallbar').style.width='0%'}
+function samplingAnswer(){const v=document.getElementById('sampling').value;const m={a:'Aleatorio simple: los nombres se seleccionan por sorteo.',s:'Sistemático: se parte de un inicio aleatorio y se elige cada k-ésimo registro.',e:'Estratificado: la población se divide en estratos y se selecciona al azar dentro de cada uno.',c:'Por conglomerados: se seleccionan grupos naturales, como centros de salud.',v:'Bola de nieve: los primeros participantes refieren a otras personas elegibles.',co:'Conveniencia: se selecciona a quienes están disponibles y cumplen los criterios.'};document.getElementById('samplingresult').textContent=m[v]||'La explicación aparecerá aquí.'}
+function checkCase(){let p=document.getElementById('casepop').value,m=document.getElementById('casemethod').value;let good=p==='all'&&m==='conv';let f=document.getElementById('casefeedback');f.className='feedback show '+(good?'good':'bad');f.textContent=(good?'¡Muy bien! ':'Revisa tus respuestas. ')+'La población incluye a todos los cuidadores elegibles durante el periodo; si se elige a quienes están disponibles, el método es por conveniencia.'}
+function revealModel(){document.getElementById('modelanswer').style.display='block'}
+</script>
+</body>
+</html>
