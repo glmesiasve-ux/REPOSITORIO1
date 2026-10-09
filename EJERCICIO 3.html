@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Población, muestra y muestreo — Dashboard</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f6f5f1;--card:#fff;--tx:#1d2a24;--mut:#5d6b64;--ac:#1f6f54;--ac2:#e0f0e9;--bd:#dcdad2;--bad:#b3392f;--sel:#e08a00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a17;--card:#1d2621;--tx:#e8eee9;--mut:#9fb0a6;--ac:#4cc29a;--ac2:#25382f;--bd:#33423a;--bad:#ef7d72;--sel:#f0a830}}
+:root[data-theme="dark"]{--bg:#141a17;--card:#1d2621;--tx:#e8eee9;--mut:#9fb0a6;--ac:#4cc29a;--ac2:#25382f;--bd:#33423a;--bad:#ef7d72;--sel:#f0a830}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:20px 16px 8px;max-width:1000px;margin:auto}h1{margin:0;font-size:1.5rem}header p{margin:4px 0 0;color:var(--mut)}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 16px;max-width:1000px;margin:auto;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
+nav button{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:8px 14px;border-radius:20px;cursor:pointer;font:inherit;font-size:.9rem}
+nav button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+main{max-width:1000px;margin:auto;padding:8px 16px 40px}section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+h2{font-size:1.2rem;margin:8px 0}h3{font-size:1rem;margin:0 0 6px;color:var(--ac)}.mut{color:var(--mut);font-size:.9rem}
+.tag{display:inline-block;background:var(--ac2);color:var(--ac);border-radius:6px;padding:2px 8px;font-size:.8rem;margin:2px 4px 2px 0}
+label{display:block;font-size:.85rem;color:var(--mut);margin:8px 0 2px}input,select{width:100%;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+button.b{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:9px 16px;cursor:pointer;font:inherit;margin:8px 6px 0 0}button.b.alt{background:var(--ac2);color:var(--ac)}
+.res{font-size:2rem;font-weight:700;color:var(--ac)}.f{font-family:ui-monospace,Menlo,monospace;background:var(--bg);padding:6px 10px;border-radius:8px;display:inline-block;margin:4px 0;overflow-x:auto;max-width:100%}
+#pop{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:420px}
+#pop i{aspect-ratio:1;border-radius:50%;background:var(--bd);display:block}#pop i.s{background:var(--sel);box-shadow:0 0 0 2px var(--sel)}
+#pop i.g0{border:2px solid #3b82c4}#pop i.g1{border:2px solid #1f6f54}#pop i.g2{border:2px solid #b3392f}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}td,th{border:1px solid var(--bd);padding:8px;text-align:left;vertical-align:top}th{background:var(--ac2)}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);cursor:pointer;font:inherit}
+.opt.ok{border-color:var(--ac);background:var(--ac2)}.opt.no{border-color:var(--bad)}.fb{margin-top:8px;font-size:.9rem}
+.bar{height:8px;background:var(--bd);border-radius:4px;overflow:hidden}.bar div{height:100%;background:var(--ac);width:0;transition:width .3s}
+.stat{display:flex;gap:12px;flex-wrap:wrap}.stat div{flex:1;min-width:110px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px}.stat b{font-size:1.4rem;color:var(--ac);display:block}
+ul{padding-left:20px;margin:6px 0}
+</style></head><body>
+<header><h1>📊 Población, muestra y muestreo</h1><p>Metodología de la investigación · Enfoque cuantitativo y cualitativo</p></header>
+<nav id="nav"></nav>
+<main>
+
+<section id="t0" class="on">
+<div class="stat"><div><b id="k1">0/6</b>Quiz resuelto</div><div><b id="k2">0/6</b>Casos clasificados</div><div><b>8</b>Tipos de muestreo</div></div>
+<div class="card"><h2>Caso de estudio</h2><p><i>La comunicación por Internet al servicio de docentes y alumnos del nivel secundario de los colegios Champagnat–Hermanos Maristas de Lima, 2026.</i></p><p class="mut">Unidades de análisis: docentes y alumnos. Casos: colegios. (Título reconstruido a partir de las diapositivas.)</p></div>
+<div class="grid">
+<div class="card"><h3>Población</h3><p>Conjunto de casos que concuerdan con determinadas especificaciones; sobre él se generalizan los resultados. Se delimita con <b>criterios de selección</b> (inclusión y exclusión).</p></div>
+<div class="card"><h3>Muestra</h3><p>Subgrupo de la población sobre el cual se recolectan los datos; debe ser representativa (Hernández-Sampieri y Mendoza, 2018). Subconjunto accesible para hacer inferencias (Borges, 2010).</p></div>
+<div class="card"><h3>Muestreo</h3><p>Procedimiento para seleccionar la muestra según criterios del investigador, para responder las preguntas y alcanzar los objetivos.</p></div>
+</div>
+<div class="card"><h3>Cualidades de una buena muestra</h3><span class="tag">Representatividad</span><span class="tag">Tamaño adecuado</span><span class="tag">Accesibilidad</span>
+<ul><li><b>Representatividad:</b> refleja las características de la población.</li><li><b>Tamaño adecuado:</b> suficiente para una precisión aceptable.</li><li><b>Accesibilidad:</b> se puede llegar a ella para estudiarla.</li></ul></div>
+<div class="grid"><div class="card"><h3>Enfoque cuantitativo</h3><p>Predominan muestreos probabilísticos cuando se busca generalizar. Se habla de <b>población y muestra</b>.</p></div>
+<div class="card"><h3>Enfoque cualitativo</h3><p>Habitual el muestreo no probabilístico, orientado a la riqueza de la información. Se habla de <b>escenario de estudio</b>: contexto natural donde ocurre el fenómeno.</p></div></div>
+<div class="card"><h3>Sujeto de estudio</h3><p>Persona, grupo, organización, comunidad, documento, acontecimiento o fenómeno del que se recolecta información para analizar las variables.</p></div>
+</section>
+
+<section id="t1">
+<div class="card"><h2>Calculadora del tamaño de muestra</h2>
+<div class="grid"><div>
+<label>Tipo de variable</label><select id="cv"><option value="ql">Cualitativa (proporción)</option><option value="qt">Cuantitativa (media)</option></select>
+<label>Población</label><select id="cp"><option value="f">Finita</option><option value="i">Infinita</option></select>
+<label>Tamaño de la población N</label><input id="cN" type="number" value="1000" min="2">
+<label>Nivel de confianza (Z)</label><select id="cz"><option value="1.645">90% (1.645)</option><option value="1.96" selected>95% (1.96)</option><option value="2.576">99% (2.576)</option></select>
+<label>Error de estimación e</label><input id="ce" type="number" value="0.05" step="0.01" min="0.001">
+<label id="lp">p (probabilidad de éxito; q = 1 − p)</label><input id="cpp" type="number" value="0.5" step="0.05" min="0.01" max="0.99">
+<label id="ls" style="display:none">Desviación estándar σ</label><input id="csg" type="number" value="10" step="0.5" style="display:none">
+<button class="b" onclick="calc()">Calcular</button></div>
+<div><div class="mut">Muestra necesaria</div><div class="res" id="cr">—</div><div class="f" id="cf"></div><p class="mut" id="cs"></p></div></div></div>
+<div class="card"><h3>Fórmulas</h3><div class="tw"><table><tr><th></th><th>Población infinita</th><th>Población finita</th></tr>
+<tr><td>Cualitativa</td><td>n = Z²·p·q / e²</td><td>n = N·Z²·p·q / [e²(N−1) + Z²·p·q]</td></tr>
+<tr><td>Cuantitativa</td><td>n = Z²·σ² / e²</td><td>n = N·Z²·σ² / [e²(N−1) + Z²·σ²]</td></tr></table></div></div>
+<div class="card"><h3>Ejercicio</h3><p>Si los colegios maristas suman N = 1 200 alumnos, con 95% de confianza, e = 5% y p = 0.5, ¿cuántos alumnos encuestar? Compruébalo con la calculadora (resultado esperado: 292).</p></div>
+</section>
+
+<section id="t2">
+<div class="card"><h2>Simulador de muestreo probabilístico</h2><p class="mut">Población de N = 100 (10×10). Los colores del borde marcan estratos (3 grupos) y cada fila es un conglomerado.</p>
+<div class="grid"><div><label>Método</label><select id="sm"><option value="s">Aleatorio simple</option><option value="y">Sistemático</option><option value="e">Estratificado (proporcional)</option><option value="c">Conglomerado (filas)</option></select>
+<label>Tamaño n (o nº de filas en conglomerado)</label><input id="sn" type="number" value="20" min="1" max="100">
+<button class="b" onclick="sim()">Seleccionar muestra</button><p id="si" class="mut"></p></div><div id="pop"></div></div></div>
+<div class="grid">
+<div class="card"><h3>Aleatorio simple</h3><p>Todos tienen la misma probabilidad; selección al azar. Ej.: sortear 50 números de 1 000.</p></div>
+<div class="card"><h3>Sistemático</h3><p>Inicio al azar y salto k = N/n. Ej.: 1 000/50 → k = 20.</p></div>
+<div class="card"><h3>Estratificado</h3><p>Se divide en estratos homogéneos y se muestrea en cada uno. Ej.: jóvenes, adultos y mayores.</p></div>
+<div class="card"><h3>Conglomerado</h3><p>Se sortean grupos completos. Ej.: 23 de 456 centros comerciales; se entrevista a todos sus clientes.</p></div></div>
+</section>
+
+<section id="t3">
+<div class="card"><h2>Muestreo no probabilístico</h2><div class="tw"><table><tr><th>Tipo</th><th>Característica</th><th>Ventaja</th></tr>
+<tr><td>Conveniencia</td><td>Se elige por facilidad de acceso o cercanía.</td><td>Rápido y económico, pero puede sesgarse.</td></tr>
+<tr><td>Juicio</td><td>El investigador elige a quienes considera idóneos.</td><td>Datos ricos de individuos clave.</td></tr>
+<tr><td>Cuota</td><td>Categorías predefinidas (edad, género...) en proporciones fijas.</td><td>Cubre diversas categorías.</td></tr>
+<tr><td>Bola de nieve</td><td>Los participantes refieren a otros.</td><td>Útil en poblaciones de difícil acceso.</td></tr></table></div></div>
+<div class="card"><h3>Ejemplos de las diapositivas</h3><ul><li><b>Conveniencia:</b> repartir folletos y preguntar en un centro comercial.</li><li><b>Juicio:</b> estudiar el uso de anteojos solo con quienes los usan.</li><li><b>Cuota:</b> definir cuántas entrevistas por distrito, sexo y edad.</li><li><b>Bola de nieve:</b> adolescentes que refieren a otros adolescentes.</li></ul></div>
+</section>
+
+<section id="t4">
+<div class="card"><h2>Quiz</h2><div class="bar"><div id="qb"></div></div><div id="qz"></div></div>
+<div class="card"><h2>Clasifica el caso</h2><p class="mut">Elige el tipo de muestreo que corresponde.</p><div id="cl"></div></div>
+</section>
+
+<section id="t5">
+<div class="card"><h2>Bibliografía</h2><ul>
+<li>Hernández-Sampieri, R., y Mendoza, C. (2018). <i>Metodología de la investigación: Las rutas cuantitativa, cualitativa y mixta</i>. McGraw-Hill.</li>
+<li>Trochim, W. M. K. (2020). <i>Research Methods Knowledge Base</i>.</li>
+<li>Borges (2010). Fuente citada en la sesión; completa título y editorial según tu formato APA.</li></ul>
+<p class="mut">Verifica los datos finales de cada referencia antes de entregarlas.</p></div></section>
+</main>
+<script>
+const T=["Resumen","Calculadora","Simulador","No probabilístico","Ejercicios","Bibliografía"],$=id=>document.getElementById(id);
+$("nav").innerHTML=T.map((t,i)=>`<button onclick="go(${i})">${t}</button>`).join("");
+function go(i){document.querySelectorAll("section").forEach((s,j)=>s.classList.toggle("on",i==j));document.querySelectorAll("nav button").forEach((b,j)=>b.classList.toggle("on",i==j))}go(0);
+function calc(){const v=$("cv").value,p=$("cp").value,N=+$("cN").value,Z=+$("cz").value,e=+$("ce").value,pp=+$("cpp").value,sg=+$("csg").value;
+const u=v=="ql"?Z*Z*pp*(1-pp):Z*Z*sg*sg;let n=p=="i"?u/(e*e):N*u/(e*e*(N-1)+u);n=Math.ceil(n);
+$("cr").textContent=n;$("cf").textContent=(v=="ql"?"Z²·p·q":"Z²·σ²")+" = "+u.toFixed(3);
+$("cs").textContent=p=="f"?`Representa el ${(100*n/N).toFixed(1)}% de la población.`:"Población infinita: no depende de N."}
+$("cv").onchange=()=>{const q=$("cv").value=="ql";$("lp").style.display=$("cpp").style.display=q?"":"none";$("ls").style.display=$("csg").style.display=q?"none":""};
+$("cp").onchange=()=>{$("cN").disabled=$("cp").value=="i"};calc();
+let pop=$("pop");pop.innerHTML=Array.from({length:100},(_,i)=>`<i class="g${i<40?0:i<70?1:2}"></i>`).join("");
+const sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a},R=n=>[...Array(n).keys()];
+function sim(){const m=$("sm").value;let n=Math.max(1,Math.min(100,+$("sn").value)),s=[],t="";
+if(m=="s"){s=sh(R(100)).slice(0,n);t=`Sorteo de ${n} números al azar.`}
+if(m=="y"){const k=Math.floor(100/n),st=Math.random()*k|0;for(let i=st;i<100&&s.length<n;i+=k)s.push(i);t=`k = 100/${n} ≈ ${k}; inicio aleatorio = ${st+1}.`}
+if(m=="e"){[[0,40],[40,70],[70,100]].forEach(([a,b])=>{const q=Math.round(n*(b-a)/100);s.push(...sh(R(b-a).map(x=>x+a)).slice(0,q))});t="Se toma el mismo % de cada estrato (40, 30 y 30 elementos)."}
+if(m=="c"){n=Math.min(n,10);sh(R(10)).slice(0,n).forEach(r=>{for(let c=0;c<10;c++)s.push(r*10+c)});t=`${n} filas elegidas al azar; se toma toda la fila.`}
+[...pop.children].forEach((d,i)=>d.classList.toggle("s",s.includes(i)));$("si").textContent=t+` Muestra: ${s.length}.`}
+const Q=[["¿Qué debe reflejar una muestra representativa?",["Las características de la población","Solo a los más accesibles","Un número fijo de 30"],0],
+["N = 1 000 y n = 50 en muestreo sistemático. ¿Cuál es k?",["10","20","50"],1],
+["¿Cuándo predomina el muestreo probabilístico?",["Al buscar generalizar resultados","En estudios cualitativos profundos","Nunca en cuantitativos"],0],
+["Dividir a la población en grupos homogéneos y muestrear en cada uno es...",["Conglomerado","Estratificado","Juicio"],1],
+["¿Qué concepto es propio del enfoque cualitativo?",["Población infinita","Escenario de estudio","Error de estimación"],1],
+["¿Cuál es una ventaja del muestreo por conglomerados?",["Más económico con poblaciones de difícil acceso","Elimina todo error","Cada elemento se elige uno a uno"],0]];
+let qa=0,qd=0;$("qz").innerHTML=Q.map((q,i)=>`<div style="margin:14px 0"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<button class="opt" onclick="ans(${i},${j},this)">${o}</button>`).join("")}<div class="fb" id="f${i}"></div></div>`).join("");
+function ans(i,j,b){const w=b.parentNode;if(w.dataset.d)return;w.dataset.d=1;const ok=j==Q[i][2];w.querySelectorAll(".opt")[Q[i][2]].classList.add("ok");if(!ok)b.classList.add("no");else qa++;qd++;$("f"+i).textContent=ok?"✅ Correcto":"❌ Incorrecto";$("qb").style.width=qd/6*100+"%";$("k1").textContent=qa+"/6"}
+const C=[["Sortear 23 centros comerciales de 456 y entrevistar a todos sus clientes","Conglomerado"],["Pedir a adolescentes que recomienden a otros adolescentes","Bola de nieve"],["Detener personas en la calle para repartir folletos","Conveniencia"],["Entrevistar a 3 mujeres y 3 hombres por distrito","Cuota"],["Elegir cada 20.º alumno de una lista ordenada","Sistemático"],["Dividir en jóvenes, adultos y mayores y sortear en cada grupo","Estratificado"]];
+const ty=["Aleatorio simple","Sistemático","Estratificado","Conglomerado","Conveniencia","Juicio","Cuota","Bola de nieve"];let cc=0;
+$("cl").innerHTML=C.map((c,i)=>`<div style="margin:10px 0"><div>${c[0]}</div><select onchange="chk(${i},this)"><option value="">— elige —</option>${ty.map(t=>`<option>${t}</option>`).join("")}</select><span id="c${i}"></span></div>`).join("");
+const dn={};function chk(i,s){const ok=s.value==C[i][1];$("c"+i).textContent=s.value?(ok?" ✅":" ❌ Inténtalo de nuevo"):"";dn[i]=ok;cc=Object.values(dn).filter(Boolean).length;$("k2").textContent=cc+"/6"}
+</script></body></html>
